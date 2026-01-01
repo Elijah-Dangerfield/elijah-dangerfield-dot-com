@@ -48,6 +48,7 @@ cp .env.example .env
 ```
 
 4. Configure your Notion integration:
+
    - Go to [Notion Integrations](https://www.notion.so/my-integrations)
    - Create a new integration
    - Copy the token to `NOTION_TOKEN` in your `.env` file
@@ -92,27 +93,3 @@ src/
 │   └── notion/           # Notion API integration
 └── styles/               # Global styles
 ```
-
-## Customization
-
-### Update Your Information
-
-1. **Landing Page** (`src/app/page.tsx`): Update your bio and social links
-2. **Experience** (`src/features/experience/components/experience-page.tsx`): Add your work history
-3. **Contact** (`src/features/contact/components/contact-page.tsx`): Update social links and email
-
-### Add Your Resume
-
-Place your resume PDF at `public/resume.pdf` for the download button to work.
-
-## Deployment
-
-Deploy to Vercel with one click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
-
-Remember to set your environment variables in the Vercel dashboard.
-
-## License
-
-MIT
