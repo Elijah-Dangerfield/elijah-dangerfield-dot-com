@@ -36,6 +36,11 @@ interface PersonalProject {
     src: string;
     alt: string;
   };
+  link?: {
+    href: string;
+    label: string;
+    badgeSrc?: string;
+  };
 }
 
 const experiences: Experience[] = [
@@ -168,6 +173,11 @@ const personalProjects: PersonalProject[] = [
     logo: {
       src: '/logos/odd-one-out-logo.webp',
       alt: 'Odd One Out logo',
+    },
+    link: {
+      href: 'https://play.google.com/store/apps/details?id=com.dangerfield.spyfall.free',
+      label: 'View on Google Play',
+      badgeSrc: '/badges/google-play-badge.png',
     },
   },
 ];
@@ -334,6 +344,33 @@ export default function ExperiencePage() {
                     </li>
                   ))}
                 </ul>
+                {project.link && project.link.badgeSrc && (
+                  <a
+                    href={project.link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex"
+                  >
+                    <Image
+                      src={project.link.badgeSrc}
+                      alt={project.link.label}
+                      width={180}
+                      height={60}
+                      className="h-auto w-44"
+                    />
+                  </a>
+                )}
+                {project.link && !project.link.badgeSrc && (
+                  <Button asChild variant="outline" size="sm" className="mt-4">
+                    <a
+                      href={project.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.link.label}
+                    </a>
+                  </Button>
+                )}
                 <div className="mt-3 flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
                     <span
