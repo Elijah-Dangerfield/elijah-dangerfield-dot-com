@@ -1,0 +1,30 @@
+# Firebase App Hosting configuration
+# https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  # Runtime settings
+  minInstances: 0
+  maxInstances: 2
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 512
+
+env:
+  # Public environment variables (non-sensitive)
+  - variable: NEXT_PUBLIC_URL
+    value: https://elijahdangerfield.com
+  - variable: NEXT_PUBLIC_API_URL
+    value: https://elijahdangerfield.com/api
+
+  # Secrets from Google Cloud Secret Manager
+  # Create these secrets in Cloud Console first, then reference them here
+  - variable: NOTION_TOKEN
+    secret: NOTION_TOKEN
+  - variable: NOTION_BLOG_DATABASE_ID
+    secret: NOTION_BLOG_DATABASE_ID
+  
+  # Uncomment if you're using the unofficial notion-client for page rendering
+  # - variable: NOTION_TOKEN_V2
+  #   secret: NOTION_TOKEN_V2
+  # - variable: NOTION_ACTIVE_USER
+  #   secret: NOTION_ACTIVE_USER
