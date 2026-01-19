@@ -32,8 +32,8 @@ const HomePage = () => {
                 priority
               />
               <p className="text-base text-muted-foreground text-left">
-                In lue of a photo I think actually captures my vibe, here&apos;s
-                some hand drawn art.
+                In lieu of a photo I think actually captures my vibe,
+                here&apos;s some hand drawn art.
               </p>
             </div>
           </div>
@@ -58,7 +58,7 @@ const HomePage = () => {
           {/* Social Links */}
           <div className="flex justify-center gap-6 pt-8">
             <a
-              href="https://github.com/elijahdangerfield"
+              href="https://github.com/elijah-dangerfield"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground transition-colors hover:text-foreground"

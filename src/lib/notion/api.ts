@@ -6,6 +6,7 @@ import {
   getStringsProperty,
   getDateProperty,
   getUrlProperty,
+  getNumberProperty,
 } from '@/lib/notion/utils';
 
 import { notionAPI, notionPrivateAPI } from './client';
@@ -24,6 +25,8 @@ export interface BlogPost {
   updatedDate: string;
   readTime?: number | null;
   imageUrl: string;
+  category?: string | null;
+  rating?: number | null;
 }
 
 export interface BlogPostsResponse {
@@ -111,6 +114,8 @@ export const getPublishedBlogPosts = async ({
             (getDateProperty(page, 'Updated Date') as string) ||
             new Date().toISOString(),
           imageUrl: getUrlProperty(page, 'Image') || '',
+          category: getStringProperty(page, 'Category'),
+          rating: getNumberProperty(page, 'Rating (out of 5)'),
         };
       })
       .filter((post): post is BlogPost => post !== null);
@@ -188,6 +193,8 @@ export const getBlogPostBySlug = async (
         (getDateProperty(result, 'Updated Date') as string) ||
         new Date().toISOString(),
       imageUrl: getUrlProperty(result, 'Image') || '',
+      category: getStringProperty(result, 'Category'),
+      rating: getNumberProperty(result, 'Rating (out of 5)'),
     };
 
     const pageContent = await getPageByPageId(post.id);
