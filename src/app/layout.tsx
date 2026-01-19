@@ -1,8 +1,7 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 
-import { Footer, Header } from '@/components/layouts';
 import { AppProvider } from '@/app/provider';
+import { Footer, Header } from '@/components/layouts';
 
 import '@/styles/globals.css';
 

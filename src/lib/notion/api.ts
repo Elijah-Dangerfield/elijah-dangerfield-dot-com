@@ -95,9 +95,18 @@ export const getPublishedBlogPosts = async ({
       ],
     });
 
-    const posts: BlogPost[] = response.results
+    const posts = response.results
       .map((page) => {
         if (!('properties' in page)) return null;
+
+        const rawPublishedDate = getDateProperty(page, 'Published Date');
+        const publishedDate = Array.isArray(rawPublishedDate)
+          ? rawPublishedDate[0]
+          : rawPublishedDate;
+        const rawUpdatedDate = getDateProperty(page, 'Updated Date');
+        const updatedDate = Array.isArray(rawUpdatedDate)
+          ? rawUpdatedDate[0]
+          : rawUpdatedDate;
 
         return {
           id: page.id,
@@ -107,18 +116,14 @@ export const getPublishedBlogPosts = async ({
           tags: getStringsProperty(page, 'Tags')?.split(', ') || [],
           status:
             (getStringProperty(page, 'Status') as BlogPostStatus) || 'Draft',
-          publishedDate: getDateProperty(page, 'Published Date') as
-            | string
-            | undefined,
-          updatedDate:
-            (getDateProperty(page, 'Updated Date') as string) ||
-            new Date().toISOString(),
+          ...(publishedDate && { publishedDate }),
+          updatedDate: updatedDate || new Date().toISOString(),
           imageUrl: getUrlProperty(page, 'Image') || '',
           category: getStringProperty(page, 'Category'),
           rating: getNumberProperty(page, 'Rating (out of 5)'),
-        };
+        } satisfies BlogPost;
       })
-      .filter((post): post is BlogPost => post !== null);
+      .filter((post) => post !== null);
 
     return {
       items: posts,

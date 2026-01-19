@@ -21,7 +21,7 @@ export default function BlogPostPage({ post, page }: BlogPostPageProps) {
   return (
     <div className="min-h-screen bg-background">
       {/* Back link */}
-      <div className="mx-auto max-w-4xl px-4 py-4">
+      <div className="mx-auto max-w-4xl p-4">
         <Link
           href={paths.blog.getHref()}
           className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground"

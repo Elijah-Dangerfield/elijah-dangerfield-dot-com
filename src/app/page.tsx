@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { ArrowRight, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -31,7 +31,7 @@ const HomePage = () => {
                 className="h-auto w-40 rounded-xl border bg-muted object-cover sm:w-48"
                 priority
               />
-              <p className="text-base text-muted-foreground text-left">
+              <p className="text-left text-base text-muted-foreground">
                 In lieu of a photo I think actually captures my vibe,
                 here&apos;s some hand drawn art.
               </p>
@@ -76,7 +76,7 @@ const HomePage = () => {
               <span className="sr-only">LinkedIn</span>
             </a>
             <span
-              className="relative text-muted-foreground/50 cursor-not-allowed"
+              className="relative cursor-not-allowed text-muted-foreground/50"
               title="JK. I don't have one of those."
             >
               <Twitter className="size-6" />

@@ -1,8 +1,7 @@
 'use client';
 
+import { Briefcase, Code, Download, GraduationCap, Rocket } from 'lucide-react';
 import Image from 'next/image';
-
-import { Briefcase, Download, GraduationCap, Code, Rocket } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
@@ -224,7 +223,7 @@ export default function ExperiencePage() {
                 key={index}
                 className="relative border-l-2 border-muted pl-6"
               >
-                <div className="absolute -left-[9px] top-0 size-4 rounded-full border-2 border-primary bg-background" />
+                <div className="absolute left-[-9px] top-0 size-4 rounded-full border-2 border-primary bg-background" />
                 <div className="mb-1 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
                     {exp.logo && (

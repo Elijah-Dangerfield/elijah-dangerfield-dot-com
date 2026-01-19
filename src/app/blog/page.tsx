@@ -1,6 +1,6 @@
-import { Metadata } from 'next';
 import dayjs from 'dayjs';
 import { ArrowRight, Calendar } from 'lucide-react';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
