@@ -22,9 +22,9 @@ env:
     secret: NOTION_TOKEN
   - variable: NOTION_BLOG_DATABASE_ID
     secret: NOTION_BLOG_DATABASE_ID
-  
-  # Uncomment if you're using the unofficial notion-client for page rendering
-  # - variable: NOTION_TOKEN_V2
-  #   secret: NOTION_TOKEN_V2
-  # - variable: NOTION_ACTIVE_USER
-  #   secret: NOTION_ACTIVE_USER
+
+  # Used by notion-client for rendering full page content
+  - variable: NOTION_TOKEN_V2
+    secret: NOTION_TOKEN_V2
+  - variable: NOTION_ACTIVE_USER
+    secret: NOTION_ACTIVE_USER
