@@ -16,9 +16,8 @@ const HomePage = () => {
             <span className="text-primary">Elijah Dangerfield</span>
           </h1>
           <p className="text-lg text-muted-foreground sm:text-xl">
-            I like to make things. Android apps, iOS apps, websites, the
-            occasional short story. Sometimes I fall down rabbit holes and who
-            knows what comes out the other side.
+            I like to make things, including this website, which I probably
+            won&apos;t update enough, but here we are.
           </p>
 
           <div className="rounded-2xl border bg-background/80 p-6 shadow-sm">
