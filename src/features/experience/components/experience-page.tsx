@@ -1,6 +1,13 @@
 'use client';
 
-import { Briefcase, Code, Download, GraduationCap, Rocket } from 'lucide-react';
+import {
+  Briefcase,
+  Code,
+  Download,
+  Github,
+  GraduationCap,
+  Rocket,
+} from 'lucide-react';
 import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
@@ -26,6 +33,13 @@ interface Education {
   details?: string;
 }
 
+interface PersonalProjectLink {
+  href: string;
+  label: string;
+  badgeSrc?: string;
+  icon?: 'github';
+}
+
 interface PersonalProject {
   name: string;
   description: string;
@@ -35,11 +49,7 @@ interface PersonalProject {
     src: string;
     alt: string;
   };
-  link?: {
-    href: string;
-    label: string;
-    badgeSrc?: string;
-  };
+  links?: PersonalProjectLink[];
 }
 
 const experiences: Experience[] = [
@@ -173,11 +183,52 @@ const personalProjects: PersonalProject[] = [
       src: '/logos/odd-one-out-logo.webp',
       alt: 'Odd One Out logo',
     },
-    link: {
-      href: 'https://play.google.com/store/apps/details?id=com.dangerfield.spyfall.free',
-      label: 'View on Google Play',
-      badgeSrc: '/badges/google-play-badge.png',
+    links: [
+      {
+        href: 'https://play.google.com/store/apps/details?id=com.dangerfield.spyfall.free',
+        label: 'Get it on Google Play',
+        badgeSrc: '/badges/google-play-badge.png',
+      },
+    ],
+  },
+  {
+    name: 'Rounds — HIIT / Interval Timer',
+    description: 'Cross-platform timer for iOS & Android',
+    details: [
+      'Kotlin Multiplatform app sharing the full UI and business logic across iOS and Android via Compose Multiplatform',
+      'Custom State-Event-Action ViewModel base class enforcing unidirectional data flow, plus an api/impl module split with kotlin-inject-anvil DI to keep features cycle-free',
+      'Single-PR release pipeline using release-please and Conventional Commits — merging the version PR tags, builds both platforms, and submits to the stores',
+    ],
+    technologies: [
+      'Kotlin Multiplatform',
+      'Compose Multiplatform',
+      'Swift',
+      'Room',
+      'kotlin-inject-anvil',
+      'GitHub Actions',
+      'release-please',
+    ],
+    logo: {
+      src: '/logos/rounds-logo.png',
+      alt: 'Rounds logo',
     },
+    links: [
+      {
+        href: 'https://apps.apple.com/us/app/rounds-interval-hiit-timer/id6762529965',
+        label: 'Download on the App Store',
+        badgeSrc: '/badges/app-store-badge.png',
+      },
+      {
+        href: 'https://play.google.com/store/apps/details?id=com.dangerfield.hiittimer.HIITTimer',
+        label: 'Get it on Google Play',
+        badgeSrc: '/badges/google-play-badge.png',
+      },
+      {
+        href: 'https://github.com/Elijah-Dangerfield/HIITTimer',
+        label: 'View on GitHub',
+        icon: 'github',
+      },
+    ],
   },
 ];
 
@@ -343,32 +394,46 @@ export default function ExperiencePage() {
                     </li>
                   ))}
                 </ul>
-                {project.link && project.link.badgeSrc && (
-                  <a
-                    href={project.link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 inline-flex"
-                  >
-                    <Image
-                      src={project.link.badgeSrc}
-                      alt={project.link.label}
-                      width={180}
-                      height={60}
-                      className="h-auto w-44"
-                    />
-                  </a>
-                )}
-                {project.link && !project.link.badgeSrc && (
-                  <Button asChild variant="outline" size="sm" className="mt-4">
-                    <a
-                      href={project.link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {project.link.label}
-                    </a>
-                  </Button>
+                {project.links && project.links.length > 0 && (
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    {project.links.map((link) =>
+                      link.badgeSrc ? (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex"
+                        >
+                          <Image
+                            src={link.badgeSrc}
+                            alt={link.label}
+                            width={180}
+                            height={60}
+                            className="h-12 w-auto"
+                          />
+                        </a>
+                      ) : (
+                        <Button
+                          key={link.href}
+                          asChild
+                          variant="outline"
+                          size="sm"
+                        >
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {link.icon === 'github' && (
+                              <Github className="mr-2 size-4" />
+                            )}
+                            {link.label}
+                          </a>
+                        </Button>
+                      ),
+                    )}
+                  </div>
                 )}
                 <div className="mt-3 flex flex-wrap gap-2">
                   {project.technologies.map((tech) => (
