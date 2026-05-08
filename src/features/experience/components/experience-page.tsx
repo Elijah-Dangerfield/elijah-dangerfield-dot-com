@@ -366,13 +366,13 @@ export default function ExperiencePage() {
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
                     {project.logo && (
-                      <span className="flex size-12 items-center justify-center rounded-md border bg-background p-2">
+                      <span className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-background">
                         <Image
                           src={project.logo.src}
                           alt={project.logo.alt}
-                          width={40}
-                          height={40}
-                          className="object-contain"
+                          width={56}
+                          height={56}
+                          className="size-full object-cover"
                         />
                       </span>
                     )}
@@ -414,23 +414,18 @@ export default function ExperiencePage() {
                           />
                         </a>
                       ) : (
-                        <Button
+                        <a
                           key={link.href}
-                          asChild
-                          variant="outline"
-                          size="sm"
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex h-12 items-center gap-2 rounded-lg border border-border bg-background px-5 text-sm font-medium transition-colors hover:bg-muted"
                         >
-                          <a
-                            href={link.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {link.icon === 'github' && (
-                              <Github className="mr-2 size-4" />
-                            )}
-                            {link.label}
-                          </a>
-                        </Button>
+                          {link.icon === 'github' && (
+                            <Github className="size-5" />
+                          )}
+                          {link.label}
+                        </a>
                       ),
                     )}
                   </div>
